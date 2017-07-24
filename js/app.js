@@ -5,7 +5,7 @@
 	//创建模块
 	var app = angular.module("todomvc",[]);
 	//创建控制器
-	app.controller("todomvcCtrl",['$scope','$location',function($scope,$location){
+	app.controller("todomvcCtrl",['$scope','$filter','$location',function($scope,$filter,$location){
 		//任务展示
 		$scope.todos = [
 			{id:1, title: '吃饭',complete:true},
@@ -76,7 +76,9 @@
 		//切换显示不同状态的任务
 		$scope.isCompleted = {};
 		// 方法一：通过过滤器获取控制complete的值进行切换效果
-	
+		$scope.datass = 3493829820;
+		console.log(1)
+		console.log($filter('currency')($scope.datass,'￥'));
 		$scope.beActive = function(){
 			$scope.isCompleted = {complete:false};
 		}
@@ -88,7 +90,8 @@
 		}
 		//方法二：通过锚点后的值来区别
 		// $scope.murl = $location.url();
-		// console.log($location.url());
+		console.log($location.url());
+
 		// switch($scope.murl){
 		// 	case '/#%2Factive':
 		// 		$scope.isCompleted = {complete:false};
