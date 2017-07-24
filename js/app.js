@@ -5,7 +5,7 @@
 	//创建模块
 	var app = angular.module("todomvc",[]);
 	//创建控制器
-	app.controller("todomvcCtrl",['$scope',function($scope){
+	app.controller("todomvcCtrl",['$scope','$location',function($scope,$location){
 		//任务展示
 		$scope.todos = [
 			{id:1, title: '吃饭',complete:true},
@@ -74,6 +74,32 @@
 			}
 		};
 		//切换显示不同状态的任务
+		$scope.isCompleted = {};
+		// 方法一：通过过滤器获取控制complete的值进行切换效果
+	
+		$scope.beActive = function(){
+			$scope.isCompleted = {complete:false};
+		}
+		$scope.beCompleted = function(){
+			$scope.isCompleted = {complete:true};
+		}
+		$scope.beAll = function(){
+			$scope.isCompleted = {};
+		}
+		//方法二：通过锚点后的值来区别
+		// $scope.murl = $location.url();
+		// console.log($location.url());
+		// switch($scope.murl){
+		// 	case '/#%2Factive':
+		// 		$scope.isCompleted = {complete:false};
+		// 		break;
+		// 	case '/#%2Fcompleted':
+		// 		$scope.isCompleted = {complete:true};
+		// 		break;	
+		// 	case '/':
+		// 		$scope.isCompleted = {};
+		// 		break;
+		// }
 	}])
 
 })(angular);
